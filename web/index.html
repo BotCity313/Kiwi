@@ -1,51 +1,30 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <script src="main.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="styles.css">
-  <script src="/socket.io/socket.io.js"></script>
-  <title>Kiwi Discord Bot</title>
-  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  <script>
-    var socket;
-    $(function () {
-      socket = io();
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kiwi Discord Bot</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js" defer></script> </head>
 
-      socket.on('log', (msg) => {
-        $("#log").append("<div><p>" + msg + "</p></div>");
-        var objDiv = document.getElementById("log");
-        objDiv.scrollTop = objDiv.scrollHeight;
-      });
-
-      socket.on('init-logs', (data) => {
-        $("#log").html(data);
-        var objDiv = document.getElementById("log");
-        objDiv.scrollTop = objDiv.scrollHeight;
-      });
-
-      $("#start").click(() => {
-        socket.emit('start');
-      });
-
-      $("#stop").click(() => {
-        socket.emit('stop');
-      });
-
-      $("#clear").click(() => {
-        $("#log").html("");
-        socket.emit('clear');
-      });
-
-      $("#full-reset").click(() => {
-        $("#log").html("");
-        socket.emit('full-reset');
-      });
-    });
-  </script>
-</head>
 <body>
-  <button id="start">Start</button>
-  <button id="stop">Stop</button>
-  <button id="clear">Clear</button>
-  <button id="full-reset">Full-reset (WARNING)</button>
-  <div id="log"></div>
+    <header>
+        <h1>Kiwi Discord Bot Dashboard</h1> </header>
+    <main>
+        <div class="controls">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="clear">Clear Logs</button>
+            <button id="full-reset" class="warning">Full Reset (WARNING)</button>
+        </div>
+        <div id="log" class="log-container"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Kiwi Bot Project</p>
+    </footer>
 </body>
+
+</html>
